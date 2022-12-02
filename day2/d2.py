@@ -50,7 +50,7 @@ def calc_result2(opponent_in: str, player_in: str) -> int:
 
 if __name__ == "__main__":
 
-    with open("../files/AoC22-d2.txt") as f:
+    with open("./files/AoC22-d2.txt") as f:
         raw = []
         for line in f:
             i, o = line.strip().split()

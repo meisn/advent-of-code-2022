@@ -1,4 +1,4 @@
-with open("../files/AoC22-d1.txt") as f:
+with open("./files/AoC22-d1.txt") as f:
     raw = f.read()
 
 inp = []
