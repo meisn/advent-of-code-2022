@@ -4,13 +4,15 @@ from dataclasses import dataclass
 
 import more_itertools
 
+
 @dataclass
 class Record:
-    """Holding the data, mainly to have convinient 
+    """Holding the data, mainly to have convinient
     way to access fields (as opposed to dict).
-    
+
     The only field of relevance being 'common'
     rest is purely for debug/tests."""
+
     line: str
     length: int
     s1: set[str]
@@ -25,6 +27,7 @@ class Record2:
 
     The only field of relevance being 'common'
     rest is purely for debug/tests."""
+
     chunk: list[str]
     s1: str
     s2: str
@@ -47,17 +50,11 @@ def get_answer1(rawinput: list[str]):
     for line in rawinput:
         line = line.strip()
         l = len(line)
-        s = l//2
+        s = l // 2
         s1 = set(line[:s])
         s2 = set(line[s:])
         common = list(s1 & s2)[0]
-        it = Record(
-            line=line, 
-            length=l, 
-            s1=s1, 
-            s2=s2, 
-            common=common
-            )
+        it = Record(line=line, length=l, s1=s1, s2=s2, common=common)
 
         yield it
 
@@ -75,16 +72,22 @@ def assign_priority(letter: str):
     return PRIORITY.get(letter, 0)
 
 
-PRIORITY = {c: i for i, c in enumerate(
-    string.ascii_lowercase + string.ascii_uppercase, start=1)}
+PRIORITY = {
+    c: i
+    for i, c in enumerate(
+        string.ascii_lowercase + string.ascii_uppercase, start=1
+    )
+}
 
 if __name__ == "__main__":
     raw = read_input()
 
-    answer1 = sum(assign_priority(record.common) 
-                  for record in get_answer1(raw))
+    answer1 = sum(
+        assign_priority(record.common) for record in get_answer1(raw)
+    )
     print(f"Answer1: {answer1}")
 
-    answer2 = sum(assign_priority(record.common)
-                  for record in get_answer2(raw))
+    answer2 = sum(
+        assign_priority(record.common) for record in get_answer2(raw)
+    )
     print(f"Answer1: {answer2}")
