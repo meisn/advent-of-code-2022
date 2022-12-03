@@ -6,6 +6,11 @@ import more_itertools
 
 @dataclass
 class Record:
+    """Holding the data, mainly to have convinient 
+    way to access fields (as opposed to dict).
+    
+    The only field of relevance being 'common'
+    rest is purely for debug/tests."""
     line: str
     length: int
     s1: set[str]
@@ -15,6 +20,11 @@ class Record:
 
 @dataclass
 class Record2:
+    """Holding the data, mainly to have convinient
+    way to access fields (as opposed to dict).
+
+    The only field of relevance being 'common'
+    rest is purely for debug/tests."""
     chunk: list[str]
     s1: str
     s2: str
@@ -32,8 +42,7 @@ def read_input():
 
 
 def get_answer1(rawinput: list[str]):
-    """Reading the input data, soplitting and converting 
-    to sets, finding needle/common."""
+    """Generating dataclass by dividing lines."""
 
     for line in rawinput:
         line = line.strip()
@@ -54,8 +63,7 @@ def get_answer1(rawinput: list[str]):
 
 
 def get_answer2(rawinput: list[str]):
-    chunks = more_itertools.chunked(rawinput, 3)
-
+    """Generating dataclass by chunking lines."""
     for chunk in more_itertools.chunked(rawinput, 3):
         s1, s2, s3 = chunk
         common = list(set(s1) & set(s2) & set(s3))[0]
